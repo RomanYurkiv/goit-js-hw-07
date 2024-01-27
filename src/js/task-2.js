@@ -27,3 +27,29 @@ const images = [
     alt: 'Zebras on Zebra',
   },
 ];
+
+const galleryList = document.querySelector('.gallery');
+
+const createGalleryItem = ({ url, alt }) => {
+  const listItem = document.createElement('li');
+  listItem.classList.add('gallery-item');
+
+  const image = document.createElement('img');
+  image.src = url;
+  image.alt = alt;
+  image.classList.add('gallery-image');
+
+  listItem.appendChild(image);
+  return listItem;
+};
+
+const appendGalleryItems = () => {
+  const galleryFragment = document.createDocumentFragment();
+  images.forEach(imageData => {
+    const galleryItem = createGalleryItem(imageData);
+    galleryFragment.appendChild(galleryItem);
+  });
+  galleryList.appendChild(galleryFragment);
+};
+
+appendGalleryItems();
